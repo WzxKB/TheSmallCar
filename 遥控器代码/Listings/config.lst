@@ -1,10 +1,10 @@
-C51 COMPILER V9.54   CONFIG                                                                09/14/2022 11:10:26 PAGE 1   
+C51 COMPILER V9.54   CONFIG                                                                10/08/2022 21:03:58 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE CONFIG
 OBJECT MODULE PLACED IN .\Objects\config.obj
-COMPILER INVOKED BY: H:\keil5\C51\BIN\C51.EXE bsp\src\config.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\app\src;.\bsp\inc;.\bsp
-                    -\src) DEBUG OBJECTEXTEND PRINT(.\Listings\config.lst) TABS(2) OBJECT(.\Objects\config.obj)
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE bsp\src\config.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\app\src;.\bsp\inc;.\b
+                    -sp\src) DEBUG OBJECTEXTEND PRINT(.\Listings\config.lst) TABS(2) OBJECT(.\Objects\config.obj)
 
 line level    source
 

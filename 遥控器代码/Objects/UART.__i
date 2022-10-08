@@ -1,0 +1,1 @@
+"bsp\src\UART.c" OPTIMIZE (8,SPEED) BROWSE INCDIR(.\app\src;.\bsp\inc;.\bsp\src) DEBUG OBJECTEXTEND PRINT(.\Listings\UART.lst) TABS (2) OBJECT(.\Objects\UART.obj)

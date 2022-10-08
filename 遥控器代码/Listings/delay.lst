@@ -1,10 +1,10 @@
-C51 COMPILER V9.54   DELAY                                                                 09/14/2022 11:10:26 PAGE 1   
+C51 COMPILER V9.54   DELAY                                                                 10/08/2022 21:03:58 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE DELAY
 OBJECT MODULE PLACED IN .\Objects\delay.obj
-COMPILER INVOKED BY: H:\keil5\C51\BIN\C51.EXE bsp\src\delay.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\app\src;.\bsp\inc;.\bsp\
-                    -src) DEBUG OBJECTEXTEND PRINT(.\Listings\delay.lst) TABS(2) OBJECT(.\Objects\delay.obj)
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE bsp\src\delay.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\app\src;.\bsp\inc;.\bs
+                    -p\src) DEBUG OBJECTEXTEND PRINT(.\Listings\delay.lst) TABS(2) OBJECT(.\Objects\delay.obj)
 
 line level    source
 

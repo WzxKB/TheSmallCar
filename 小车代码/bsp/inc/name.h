@@ -28,5 +28,9 @@ typedef struct
 	u16 right;
 }BUF;
 
+//遥杆上面的临界点，此值往上则前进
+#define ROC_UP 110
+//摇杆下面的临界点，此值往下则倒退
+#define ROC_DOWN 90
 
 #endif

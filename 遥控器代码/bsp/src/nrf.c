@@ -173,7 +173,11 @@ void TX_Mode(void)
 }
 
 
-
+/**
+  * @brief NRF发送函数，将结构体发送出去 
+  * @param	无
+  * @retval	无
+  */
 void NRF_Send(u8 SW1,u8 SW2,AnalogStick analogStick)  
 { 	
 	u8 sta;

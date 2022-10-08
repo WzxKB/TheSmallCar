@@ -8,10 +8,11 @@
   void BSP_Init(void)
   {
 		Port_Config();
-		//初始化UART串口
+		/*初始化UART串口*/
 		UART_Init();
+		/*初始化NRF*/
 		NRF_Init();
 		INT3_Init();
-		//初始化PWM
+		/*初始化PWM*/
 		PWM_Init();
   }

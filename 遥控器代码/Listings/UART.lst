@@ -1,10 +1,10 @@
-C51 COMPILER V9.54   UART                                                                  09/14/2022 11:10:26 PAGE 1   
+C51 COMPILER V9.54   UART                                                                  10/08/2022 21:07:13 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE UART
 OBJECT MODULE PLACED IN .\Objects\UART.obj
-COMPILER INVOKED BY: H:\keil5\C51\BIN\C51.EXE bsp\src\UART.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\app\src;.\bsp\inc;.\bsp\s
-                    -rc) DEBUG OBJECTEXTEND PRINT(.\Listings\UART.lst) TABS(2) OBJECT(.\Objects\UART.obj)
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE bsp\src\UART.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\app\src;.\bsp\inc;.\bsp
+                    -\src) DEBUG OBJECTEXTEND PRINT(.\Listings\UART.lst) TABS(2) OBJECT(.\Objects\UART.obj)
 
 line level    source
 
@@ -24,29 +24,20 @@ line level    source
   14   1        T2L = 0xE8;   //设置定时初始值
   15   1        T2H = 0xFF;   //设置定时初始值
   16   1        AUXR |= 0x10;   //定时器2开始计时
-  17   1      //  
-  18   1      //  S3CON = 0x10;   //8位数据,可变波特率
-  19   1      //  S3CON &= 0xBF;    //串口3选择定时器2为波特率发生器
-  20   1      //  AUXR |= 0x04;   //定时器时钟1T模式
-  21   1      //  T2L = 0xE8;   //设置定时初始值
-  22   1      //  T2H = 0xFF;   //设置定时初始值
-  23   1      //  AUXR |= 0x10;   //定时器2开始计时
-  24   1      
-  25   1      }
-  26          
-  27          /**
-  28            * @brief 串口发送数据 
-  29            * @param  Byte,发送的数据
-  30            * @retval
-  31            */
-  32          void UART_Send(unsigned int dat)
-  33          {
-  34   1      //  while(busy);
-  35   1      //  busy=1;
-  36   1        SBUF=dat;
-  37   1        while(TI==0); //判断数据有没有发送完
-  38   1        TI=1;
-  39   1      }
+  17   1      
+  18   1      }
+  19          
+  20          /**
+  21            * @brief 串口发送数据 
+  22            * @param  Byte,发送的数据
+  23            * @retval
+  24            */
+  25          void UART_Send(unsigned int dat)
+  26          {
+  27   1        SBUF=dat;
+  28   1        while(TI==0); //判断数据有没有发送完
+  29   1        TI=1;
+  30   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE

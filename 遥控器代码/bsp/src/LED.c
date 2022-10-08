@@ -1,6 +1,10 @@
 #include "name.h"
 
-
+/**
+  * @brief LEDµ„¡¡ 
+  * @param	Œﬁ
+  * @retval	Œﬁ
+  */
 void LED_Light(u8 led)
 {
 	switch(led)

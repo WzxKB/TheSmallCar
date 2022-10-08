@@ -1,6 +1,6 @@
 #include "bsp.h"
 
-u8 code TX_ADDRESS[TX_ADR_WIDTH]  = {0x34,0x43,0x10,0x10,0x01}; // Define a static TX address
+u8 code TX_ADDRESS[TX_ADR_WIDTH]  = {0x34,0x43,0x10,0x10,0x01}; // 接收地址
 u8 rx_buf[TX_PLOAD_WIDTH];
   
 /**************************************************
@@ -168,6 +168,18 @@ Description:
 //}
 /**************************************************/
 
+
+
+
+
+
+
+
+/**
+  * @brief NRF初始化函数 
+  * @param	无
+  * @retval	无
+  */
 void NRF_Init(void)
 {
 	CE = 0;				// chip enable
@@ -175,16 +187,20 @@ void NRF_Init(void)
 	SCK = 1;			// Spi clock line init high
 }
 
-
+/**
+  * @brief NRF接收函数，处理接收到的数据 
+  * @param	无
+  * @retval	无
+  */
 BUF NRF_Receive(void)
 {
 	u8 sta;
 	BUF buf;
 	
 	sta=SPI_Read(STATUS);		//读取芯片的状态寄存器	
-	  if((sta & 0x40) != 0)		//是否发生了接收数据完成的中断
+	  if((sta & 0x40) != 0)		//是否发生了接收数据，完成的中断
 	  {		
-						//是的话，将收到的数据存到数组rx_buf里
+			//是的话，将收到的数据存到数组rx_buf里
 		  SPI_Read_Buf(RD_RX_PLOAD,rx_buf,TX_PLOAD_WIDTH);
 			
 		}
@@ -212,7 +228,7 @@ BUF NRF_Receive(void)
 		
 		SPI_RW_Reg(FLUSH_RX,0xff);	//清除接收缓冲器
 		SPI_RW_Reg(WRITE_REG+STATUS,sta);//清除接收中断标志
-		Delay_ms(20);	//必须有的延时，延时20ms可基本收完数据，有时会出现0x00
+		Delay_ms(20);	//必须有的延时，延时20ms可基本收完数据
 		
 	return buf;
 }

@@ -14,5 +14,6 @@
 		ADC_Init();
 	  //初始化UART串口
 		UART_Init();
-		NRF_Init();		//引脚初始化
+		//初始化NRF
+		NRF_Init();		
   }

@@ -1,4 +1,4 @@
-C51 COMPILER V9.54   MAIN                                                                  10/02/2022 14:48:00 PAGE 1   
+C51 COMPILER V9.54   MAIN                                                                  10/08/2022 21:07:23 PAGE 1   
 
 
 C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
@@ -11,93 +11,105 @@ line level    source
    1          #include "bsp.h"
    2          #include "math.h"
    3          BUF buf;
-   4          
-   5          void FastMode(void);
-   6          void BrakeMode(void);
-   7          void SlideMode(void);
-   8          
-   9          void main(void)
-  10          {
-  11   1        BSP_Init();
-  12   1      
-  13   1        Delay_ms(1000);
-  14   1        RX_Mode();                //ÅäÖÃÎª½ÓÊÕÄ£Ê½
-  15   1        LED_Red=0;
-  16   1        LED_LightGreen=0;
-  17   1        
-  18   1        while(1)
-  19   1        {
-  20   2          buf=NRF_Receive();
-  21   2          
-  22   2        }
-  23   1      }
-  24          
-  25          
-  26          
+   4          /**  
+   5            Ð¡³µ´úÂë
+   6            2022.10.08
+   7            devilwzx
+   8          **/
+   9          
+  10          /***    Ð¡³µÐÐ½øÄ£Ê½£¬¿ìË¥¼õÄ£Ê½  ***/
+  11          void FastMode(void);
+  12          void main(void)
+  13          {
+  14   1        BSP_Init();
+  15   1      
+  16   1        Delay_ms(1000);
+  17   1        RX_Mode();                //ÅäÖÃÎª½ÓÊÕÄ£Ê½
+  18   1        LED_Light(RED);
+  19   1        LED_Light(LIGHT_GREEN);
+  20   1        
+  21   1        while(1)
+  22   1        {
+  23   2          buf=NRF_Receive();
+  24   2          
+  25   2        }
+  26   1      }
   27          
-  28          void INT3_Isr() interrupt 11   
-  29          { 
-  30   1          LED_Red=~LED_Red;     
-  31   1            FastMode();
-  32   1        
-  33   1      }
-  34          
-  35          
-  36          void FastMode(void)
-  37          {
-  38   1        //×óÒ¡¸ËÍÆÉÏ£¬×óÂÖÇ°½ø
-  39   1        if(buf.left>110)
-  40   1        {
-  41   2          PWM_SetLeftIN1(100,0);
-  42   2          PWM_SetLeftIN2(buf.left,buf.middle);
-  43   2          LED_Green=0;
-  44   2           
-  45   2        }
-  46   1        else if(buf.left<90)
-  47   1        {
-  48   2        
-  49   2          PWM_SetLeftIN1(buf.left,buf.middle);
-  50   2          PWM_SetLeftIN2(100,0);
-  51   2          LED_Green=0;
-  52   2      
-  53   2        }
-  54   1        else if(buf.left>=90&&buf.left<=110)
-C51 COMPILER V9.54   MAIN                                                                  10/02/2022 14:48:00 PAGE 2   
+  28          
+  29          
+  30          /**
+  31            * @brief ÖÐ¶Ïº¯Êý£¬µ±NRF½ÓÊÕÐÅºÅÊ±ÖÐ¶Ï£¬ºìµÆÉÁË¸²¢ÔË¶¯ 
+  32            * @param  ÎÞ
+  33            * @retval ÎÞ
+  34            */
+  35          void INT3_Isr() interrupt 11   
+  36          { 
+  37   1          LED_Red=~LED_Red;     
+  38   1          FastMode();
+  39   1        
+  40   1      }
+  41          
+  42          /**
+  43            * @brief Ð¡³µÔË¶¯Ä£Ê½£¬ºÍÒ¡¸ËÏà¹Ø£¬Ò¡¸ËÉÏÂÖÌ¥Ç°½ø£¬Ò¡¸ËÏÂÂÖÌ¥µ¹ÍË£¬ÖÐÒ¡¸Ë×÷ÎªËÙ¶ÈÏµÊý£¬Ô½ÍùÉÏÍÆ£¬ÏµÊýÔ½´
+             -ó¡£ 
+  44            * @param  ÎÞ
+  45            * @retval ÎÞ
+  46            */
+  47          void FastMode(void)
+  48          {
+  49   1        //×óÒ¡¸ËÍÆÉÏ£¬×óÂÖÇ°½ø
+  50   1        if(buf.left>ROC_UP)
+  51   1        {
+  52   2          PWM_SetLeftIN1(100,0);
+  53   2          PWM_SetLeftIN2(buf.left,buf.middle);
+C51 COMPILER V9.54   MAIN                                                                  10/08/2022 21:07:23 PAGE 2   
 
-  55   1        {
-  56   2          PWM_SetLeftIN1(200,34);
-  57   2          PWM_SetLeftIN2(200,34);
-  58   2          LED_Green=0;
+  54   2          LED_Green=0;
+  55   2           
+  56   2        }
+  57   1        else if(buf.left<ROC_DOWN)
+  58   1        {
   59   2        
-  60   2        }
-  61   1        
-  62   1        //ÓÒÒ¡¸ËÍÆÉÏ£¬ÓÒÂÖÇ°½ø
-  63   1        if(buf.right>110)
-  64   1        {
-  65   2          PWM_SetRightIN1(100,0);
-  66   2          PWM_SetRightIN2(buf.right,buf.middle);
-  67   2          LED_Green=0;
-  68   2        }
-  69   1        else if(buf.right<90)
-  70   1        {
-  71   2          
-  72   2          PWM_SetRightIN1(buf.right,buf.middle);
-  73   2          PWM_SetRightIN2(100,0);
-  74   2          LED_Green=0;
-  75   2      
-  76   2        }
-  77   1        else if(buf.right>=90&&buf.right<=110)
-  78   1        {
-  79   2          PWM_SetRightIN1(200,34);
-  80   2          PWM_SetRightIN2(200,34);
-  81   2          LED_Green=0;
-  82   2        
-  83   2        }
-  84   1      }
+  60   2          PWM_SetLeftIN1(buf.left,buf.middle);
+  61   2          PWM_SetLeftIN2(100,0);
+  62   2          LED_Green=0;
+  63   2      
+  64   2        }
+  65   1        else if(buf.left>=ROC_DOWN&&buf.left<=ROC_UP)
+  66   1        {
+  67   2          PWM_SetLeftIN1(200,34);
+  68   2          PWM_SetLeftIN2(200,34);
+  69   2          LED_Green=0;
+  70   2        
+  71   2        }
+  72   1        
+  73   1        //ÓÒÒ¡¸ËÍÆÉÏ£¬ÓÒÂÖÇ°½ø
+  74   1        if(buf.right>ROC_UP)
+  75   1        {
+  76   2          PWM_SetRightIN1(100,0);
+  77   2          PWM_SetRightIN2(buf.right,buf.middle);
+  78   2          LED_Green=0;
+  79   2        }
+  80   1        else if(buf.right<ROC_DOWN)
+  81   1        {
+  82   2          
+  83   2          PWM_SetRightIN1(buf.right,buf.middle);
+  84   2          PWM_SetRightIN2(100,0);
+  85   2          LED_Green=0;
+  86   2      
+  87   2        }
+  88   1        else if(buf.right>=ROC_DOWN&&buf.right<=ROC_UP)
+  89   1        {
+  90   2          PWM_SetRightIN1(200,34);
+  91   2          PWM_SetRightIN2(200,34);
+  92   2          LED_Green=0;
+  93   2        
+  94   2        }
+  95   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    269    ----
+   CODE SIZE        =    275    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

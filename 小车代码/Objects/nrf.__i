@@ -1,0 +1,1 @@
+"bsp\src\nrf.c" OPTIMIZE (8,SPEED) BROWSE INCDIR(.\bsp\inc;.\bsp\src;.\app\src;.\app\src;.\bsp;.\app) DEBUG OBJECTEXTEND PRINT(.\Listings\nrf.lst) TABS (2) OBJECT(.\Objects\nrf.obj)
