@@ -1,0 +1,47 @@
+C51 COMPILER V9.54   CONFIG                                                                09/17/2022 14:04:49 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE CONFIG
+OBJECT MODULE PLACED IN .\Objects\config.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE bsp\src\config.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\bsp\inc;.\bsp\src;.\a
+                    -pp\src;.\app\src;.\bsp;.\app) DEBUG OBJECTEXTEND PRINT(.\Listings\config.lst) TABS(2) OBJECT(.\Objects\config.obj)
+
+line level    source
+
+   1          #include<STC8H.h>
+   2          
+   3          void Port_Config(void)
+   4          {
+   5   1        //P1.1 P1.2设为推挽输出
+   6   1        P1M1=0x00;
+   7   1        P1M0=0x03;
+   8   1        
+   9   1        P2M1=0x00;
+  10   1        P2M0=0x00;
+  11   1        
+  12   1        //P3.7设为高阻输入
+  13   1        P3M1=0x80;
+  14   1        P3M0=0x00;
+  15   1        
+  16   1        P4M1=0x00;
+  17   1        P4M0=0x00;
+  18   1        
+  19   1        
+  20   1        //P5.5设为推挽输出
+  21   1        P5M1=0x00;
+  22   1        P5M0=0x10;
+  23   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     25    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

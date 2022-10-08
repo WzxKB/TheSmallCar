@@ -1,0 +1,42 @@
+C51 COMPILER V9.54   DEALY                                                                 09/17/2022 14:04:49 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE DEALY
+OBJECT MODULE PLACED IN .\Objects\dealy.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE bsp\src\dealy.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\bsp\inc;.\bsp\src;.\ap
+                    -p\src;.\app\src;.\bsp;.\app) DEBUG OBJECTEXTEND PRINT(.\Listings\dealy.lst) TABS(2) OBJECT(.\Objects\dealy.obj)
+
+line level    source
+
+   1          /**
+   2            * @brief  延时函数
+   3            * @param  pms 延时的毫秒数
+   4            * @retval 无
+   5            */
+   6          void Delay_ms(unsigned int pms)   //@11.0592MHz
+   7          {
+   8   1        unsigned char i, j;
+   9   1        while(pms--)
+  10   1        {
+  11   2          i = 15;
+  12   2          j = 90;
+  13   2          do
+  14   2          {
+  15   3            while (--j);
+  16   3          } while (--i);
+  17   2        }
+  18   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     21    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

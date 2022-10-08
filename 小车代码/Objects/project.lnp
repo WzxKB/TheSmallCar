@@ -1,0 +1,11 @@
+".\Objects\main.obj",
+".\Objects\bsp.obj",
+".\Objects\config.obj",
+".\Objects\nrf.obj",
+".\Objects\UART.obj",
+".\Objects\dealy.obj",
+".\Objects\LED.obj",
+".\Objects\INT.obj",
+".\Objects\pwm.obj" 
+TO ".\Objects\project" 
+PRINT(".\Listings\project.m51") RAMSIZE(256) 

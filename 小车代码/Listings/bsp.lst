@@ -1,0 +1,41 @@
+C51 COMPILER V9.54   BSP                                                                   09/17/2022 14:04:49 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE BSP
+OBJECT MODULE PLACED IN .\Objects\bsp.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE bsp\bsp.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\bsp\inc;.\bsp\src;.\app\src;
+                    -.\app\src;.\bsp;.\app) DEBUG OBJECTEXTEND PRINT(.\Listings\bsp.lst) TABS(2) OBJECT(.\Objects\bsp.obj)
+
+line level    source
+
+   1          #include "bsp.h"
+   2          
+   3          /**
+   4            * @brief  初始化项目
+   5            * @param  无
+   6            * @retval 无
+   7            */ 
+   8            void BSP_Init(void)
+   9            {
+  10   1          Port_Config();
+  11   1          //初始化UART串口
+  12   1          UART_Init();
+  13   1          NRF_Init();
+  14   1          INT3_Init();
+  15   1          //初始化PWM
+  16   1          PWM_Init();
+  17   1        }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     15    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

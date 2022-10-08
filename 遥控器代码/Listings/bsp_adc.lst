@@ -1,0 +1,89 @@
+C51 COMPILER V9.54   BSP_ADC                                                               09/14/2022 11:10:26 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE BSP_ADC
+OBJECT MODULE PLACED IN .\Objects\bsp_adc.obj
+COMPILER INVOKED BY: H:\keil5\C51\BIN\C51.EXE bsp\src\bsp_adc.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\app\src;.\bsp\inc;.\bs
+                    -p\src) DEBUG OBJECTEXTEND PRINT(.\Listings\bsp_adc.lst) TABS(2) OBJECT(.\Objects\bsp_adc.obj)
+
+line level    source
+
+   1          #include "bsp.h"
+   2          
+   3          /**
+   4            * @brief  ADC模块初始化
+   5            * @param  CS 片选位,范围是0~2,0初始化P1.0;1初始化P1.1;2初始化P1.2
+   6            * @retval 无
+   7            */
+   8          void  BSP_ADC_Init(u8 CS)
+   9          {
+  10   1        P1M0|=0x00;
+  11   1        P1M1|=0x07;   //P1.0、P1.1、P1.2设为高阻输入,设为ADC口
+  12   1        P_SW2=0x80;   //使用ADC需要将EAXFR位置1,使能PWM触发ADC功能
+  13   1        ADC_CONTR=0x80|CS;  //开启ADC,使能P1.0、P1.1、P1.2口
+  14   1        ADCTIM=0x3f;  //设置ADC内部时序
+  15   1        P_SW2&=0x7f;  //EAFXR清零
+  16   1        ADCCFG=0x2f;  //设置ADC时钟频率为系统时钟16分频,采用数据格式为右对齐
+  17   1      }
+  18          
+  19          void ADC_Init()
+  20          {
+  21   1        BSP_ADC_Init(0);
+  22   1        BSP_ADC_Init(1);
+  23   1        BSP_ADC_Init(2);
+  24   1      }
+  25          /**
+  26            * @brief  ADC值读取
+  27            * @param  CS 片选位,范围是0~2,0读取P1.0;1读取P1.1;2读取P1.2
+  28            * @retval 无
+  29            */
+  30          u16 ADC_Read(u8 CS)
+  31          {
+  32   1        u16 adc_value;
+  33   1        //ADC_Init();
+  34   1        ADC_CONTR=0x80|CS;  //开启ADC,使能P1.0、P1.1、P1.2口
+  35   1        Delay_ms(5);
+  36   1        ADC_CONTR |= 0x40; //ADC开始转换
+  37   1        _nop_();
+  38   1        _nop_();
+  39   1        while(!(ADC_CONTR&0x20)); //查询ADC完成标志
+  40   1        ADC_CONTR &= ~0x20; //清完成标志
+  41   1        adc_value = ADC_RES;  //读取左边ADC结果
+  42   1        adc_value <<= 8;  //左移8位
+  43   1        adc_value |=  ADC_RESL; //读取ADC右边结果
+  44   1        return adc_value;
+  45   1      }
+  46          
+  47          /**
+  48            * @brief 遥杆的封装函数,使用它可以获得三个遥杆的值 left 左摇杆 middle 中遥杆 right 右摇杆
+  49            * @param  无
+  50            * @retval Analog_Stick 返回遥杆的结构体
+  51            */
+  52          AnalogStick Analog_Stick(void)
+  53          {
+  54   1        AnalogStick Analog_Stick;
+C51 COMPILER V9.54   BSP_ADC                                                               09/14/2022 11:10:26 PAGE 2   
+
+  55   1        Analog_Stick.left=ADC_Read(2);
+  56   1        Analog_Stick.middle=ADC_Read(1);
+  57   1        Analog_Stick.right=ADC_Read(0);
+  58   1        return Analog_Stick;
+  59   1      }
+  60          
+  61            
+  62          
+  63          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    105    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       6
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

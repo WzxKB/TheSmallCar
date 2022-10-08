@@ -1,0 +1,1 @@
+"bsp\src\name.c" OPTIMIZE (8,SPEED) BROWSE INCDIR(.\app\src;.\bsp\inc;.\bsp\src) DEBUG OBJECTEXTEND PRINT(.\Listings\name.lst) TABS (2) OBJECT(.\Objects\name.obj)

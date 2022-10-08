@@ -1,0 +1,51 @@
+C51 COMPILER V9.54   CONFIG                                                                09/14/2022 11:10:26 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE CONFIG
+OBJECT MODULE PLACED IN .\Objects\config.obj
+COMPILER INVOKED BY: H:\keil5\C51\BIN\C51.EXE bsp\src\config.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\app\src;.\bsp\inc;.\bsp
+                    -\src) DEBUG OBJECTEXTEND PRINT(.\Listings\config.lst) TABS(2) OBJECT(.\Objects\config.obj)
+
+line level    source
+
+   1          #include<STC8G.h>
+   2          
+   3          /**
+   4            * @brief  初始化IO端口,设置输出输入模式
+   5            * @param  无
+   6            * @retval 无
+   7            */
+   8          void Port_Config(void)
+   9          {
+  10   1        //P1.0、P1.1、P1.2设为高阻输入（监听遥杆）
+  11   1        P1M1=0x07;
+  12   1        P1M0=0x00;
+  13   1        
+  14   1        P2M1=0x00;
+  15   1        P2M0=0x00;
+  16   1        
+  17   1        //P3.4 P3.5设为推挽输出（点亮灯泡）3.3  P3.6设为高阻输入（监听开关）
+  18   1        P3M1=0x14;
+  19   1        P3M0=0x18;
+  20   1        
+  21   1        P4M1=0x00;
+  22   1        P4M0=0x00;
+  23   1        
+  24   1        P5M1=0x00;
+  25   1        P5M0=0x00;
+  26   1      
+  27   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     25    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

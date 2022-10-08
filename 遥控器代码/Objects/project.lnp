@@ -1,0 +1,12 @@
+".\Objects\main.obj",
+".\Objects\bsp.obj",
+".\Objects\config.obj",
+".\Objects\bsp_adc.obj",
+".\Objects\delay.obj",
+".\Objects\UART.obj",
+".\Objects\nrf.obj",
+".\Objects\SW.obj",
+".\Objects\LED.obj" 
+TO ".\Objects\project" 
+PRINT(".\Listings\project.m51") RAMSIZE(256) 
+DISABLEWARNING (16) 

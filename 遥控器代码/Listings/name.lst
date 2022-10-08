@@ -1,0 +1,25 @@
+C51 COMPILER V9.54   NAME                                                                  08/30/2022 11:19:49 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE NAME
+OBJECT MODULE PLACED IN .\Objects\name.obj
+COMPILER INVOKED BY: J:\SW\Keil5\C51\BIN\C51.EXE bsp\src\name.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\app\src;.\bsp\inc;.\bs
+                    -p\src) DEBUG OBJECTEXTEND PRINT(.\Listings\name.lst) TABS(2) OBJECT(.\Objects\name.obj)
+
+line level    source
+
+   1          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   ----    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

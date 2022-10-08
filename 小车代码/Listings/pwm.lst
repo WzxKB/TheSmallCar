@@ -1,0 +1,121 @@
+C51 COMPILER V9.54   PWM                                                                   09/17/2022 14:04:50 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE PWM
+OBJECT MODULE PLACED IN .\Objects\pwm.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE bsp\src\pwm.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\bsp\inc;.\bsp\src;.\app\
+                    -src;.\app\src;.\bsp;.\app) DEBUG OBJECTEXTEND PRINT(.\Listings\pwm.lst) TABS(2) OBJECT(.\Objects\pwm.obj)
+
+line level    source
+
+   1          #include <stc8h.h>
+   2          #include "name.h"
+   3          #include <math.h>
+   4          #include <bsp.h>
+   5          
+   6          /**
+   7            * @brief  PWM初始化，开启P1.7 P5.4 1.0 1.6，周期为100
+   8            * @param  无
+   9            * @retval 无
+  10            */
+  11          void PWM_Init(void)
+  12          {
+  13   1        P_SW2 = 0x80;   //外设功能脚切换
+  14   1        PWMB_PS=0x05;   //功能脚切换，切换P1.7 P5.4，1.0 1.6默认不用切换
+  15   1        /*****开启P1.0脚      PWMA1P****/
+  16   1        PWMA_CCER1 = 0x00;                          //CCER设置之前先清零
+  17   1        PWMA_CCMR1 = 0x60;                          //捕获比较    PWMA1P  
+  18   1        PWMA_CCER1 = 0x01;                          //捕获比较使能 PWMA_1P
+  19   1      
+  20   1        /*****开启P1.6脚      PWMA4P****/ 
+  21   1        PWMA_CCER2 = 0x00;                          //CCER设置之前先清零
+  22   1        PWMA_CCMR4 = 0x60;                          //捕获比较    PWMA4P     
+  23   1        PWMA_CCER2 = 0x10;                          //捕获比较使能 PWMA4P
+  24   1      
+  25   1        /*****开启P1.7脚      PWMB5_2****/  
+  26   1        PWMB_CCER1 = 0x00;                          //CCER设置之前先清零
+  27   1        PWMB_CCMR1 = 0x60;                          //捕获比较    PWMB5_2    
+  28   1        PWMB_CCER1 = 0x11;                          //捕获比较使能 PWMB5_2 PWMB6_2
+  29   1        
+  30   1        /*****开启P5.4脚      PWMB6_2****/  
+  31   1        
+  32   1        PWMB_CCMR2 = 0x60;                          //捕获比较    PWMB5_2    
+  33   1        
+  34   1        PWMA_ENO = 0x41;                            //使能 PWMA1P PWMA4P
+  35   1        PWMB_ENO = 0x05;                            //使能 PWMB5_2 PWMB5_2
+  36   1        PWMA_BKR = 0x80;                            //刹车寄存器
+  37   1        PWMB_BKR = 0x80;                            
+  38   1        PWMA_CR1 = 0x01;                            //PWMA开始计数
+  39   1        PWMB_CR1 = 0x01;                            //PWMB开始计数
+  40   1        
+  41   1        PWMA_ARR = 100; 
+  42   1        PWMB_ARR = 100;
+  43   1        
+  44   1          
+  45   1      }
+  46          
+  47          /**
+  48            * @brief  设置小车左侧8236IN1的PWM
+  49            * @param  value 左摇杆ad值 speed 中摇杆ad值
+  50            * @retval 无
+  51            */
+  52          void PWM_SetLeftIN1 (u8 value,u8 speed)
+  53          {
+  54   1        //IN1_Left 的PWM值 = (左摇杆的值-100的绝对值) * 中摇杆的值/100
+C51 COMPILER V9.54   PWM                                                                   09/17/2022 14:04:50 PAGE 2   
+
+  55   1        PWMA_CCR1 = abs(value-100)*((float)speed/100+0.66);
+  56   1        
+  57   1      }
+  58          
+  59          /**
+  60            * @brief  设置小车左侧8236IN2的PWM
+  61            * @param  value 左摇杆ad值 speed 中摇杆ad值
+  62            * @retval 无
+  63            */
+  64          void PWM_SetLeftIN2(u8 value, u8 speed)
+  65           {
+  66   1        //IN2_Left 的PWM值 = (左摇杆的值-100的绝对值) * 中摇杆的值/100
+  67   1        PWMA_CCR4 =abs(value-100)*((float)speed/100+0.66);
+  68   1      }
+  69          
+  70          /**
+  71            * @brief  设置小车右侧8236IN1的PWM
+  72            * @param  value 左摇杆ad值 speed 中摇杆ad值
+  73            * @retval 无
+  74            */
+  75          void PWM_SetRightIN1(u8 value,u8 speed)
+  76          {
+  77   1        //IN1_Right 的PWM值 = (右摇杆的值-100的绝对值) * 中摇杆的值/100
+  78   1        PWMB_CCR5 = abs(value-100)*((float)speed/100+0.66);
+  79   1      }
+  80          /**
+  81            * @brief  设置小车右侧8236IN2的PWM
+  82            * @param  value 左摇杆ad值 speed 中摇杆ad值
+  83            * @retval 无
+  84            */
+  85          void PWM_SetRightIN2(u8 value,u8 speed)
+  86          {
+  87   1        //IN2_Right 的PWM值 = (右摇杆的值-100的绝对值) * 中摇杆的值/100
+  88   1        PWMB_CCR6 = abs(value-100)*((float)speed/100+0.66);
+  89   1      }
+  90          
+  91          
+  92          
+  93          
+  94          
+  95          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    431    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
