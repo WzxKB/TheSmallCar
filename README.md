@@ -27,4 +27,4 @@ https://pro.lceda.cn/editor#id=b4c98ad125bf42fc8df665a7e6db6760
 ### bilibili：
 https://space.bilibili.com/295670011?spm_id_from=333.1007.0.0
 ### 附上一张图：
-![](car.jpg.png)  
+![](car.png)  
