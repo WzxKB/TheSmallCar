@@ -1,0 +1,1 @@
+"bsp\src\bsp_adc.c" OPTIMIZE (8,SPEED) BROWSE INCDIR(.\app\src;.\bsp\inc;.\bsp\src) DEBUG OBJECTEXTEND PRINT(.\Listings\bsp_adc.lst) TABS (2) OBJECT(.\Objects\bsp_adc.obj)

@@ -21,6 +21,7 @@ void main(void)
 		analogStick=Analog_Stick();	
 		/*将存好的结构体通过NRF发送出去*/
 		NRF_Send(SW1_Down(),SW2_Down(),analogStick);
+		LED_Red=~LED_Red;
 	}
 }
 	
